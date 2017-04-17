@@ -29,8 +29,8 @@ $(function(){
             let fragment={
                 expectedRow:i,
                 expectedCol:j,
-                expectedX,
-                expectedY,
+                expectedX:expectedX,
+                expectedY:expectedY,
                 curRow:i,
                 curCol:j,
                 curX:expectedX,
@@ -74,11 +74,13 @@ $(function(){
                 })
                 .end()
                     .on('click',function(){
+                        let closeToNull=false;
                         for(let m=-1;m<=1;m+=2){
                             let row=fragments[i][j].curRow+m;
                             let col=fragments[i][j].curCol;
                             if(row>=0&&row<defaults.rowNum){
                                 if(row===nullLocation.row&&col===nullLocation.col){//和空位置紧邻
+                                    closeToNull=true;
                                     let nullPosition=getPositionByIndex(row,col);
                                     if(defaults.animation){
                                         $(this).animate({
@@ -119,6 +121,7 @@ $(function(){
                             let col=fragments[i][j].curCol+n;
                             if(col>=0&&col<defaults.colNum){
                                 if(row===nullLocation.row&&col===nullLocation.col){//和空位置紧邻
+                                    closeToNull=true;
                                     let nullPosition=getPositionByIndex(row,col);
                                     if(defaults.animation){
                                         $(this).animate({
@@ -151,6 +154,12 @@ $(function(){
                                     break;//结束循环
                                 }
                             }
+                        }
+                        if(!closeToNull){
+                            $(this).removeClass('shake');
+                            setTimeout(function(){
+                                $(this).addClass('animated shake');
+                            }.bind(this),0)
                         }
                     })
                     .appendTo($Main);
