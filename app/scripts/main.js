@@ -9,7 +9,7 @@ $(function(){
     let defaults={
         rowNum:3,
         colNum:3,
-        fragmentSize:150,
+        fragmentSize:100,
         animation:true,
 
     };
@@ -110,7 +110,7 @@ $(function(){
                                         fragments[i][j].correct=false;
                                     }
 
-                                    m=2;//结束循环
+                                    break;//结束循环
                                 }
                             }
                         }
@@ -148,7 +148,7 @@ $(function(){
                                         fragments[i][j].correct=false;
                                     }
 
-                                    n=2;//结束循环
+                                    break;//结束循环
                                 }
                             }
                         }
