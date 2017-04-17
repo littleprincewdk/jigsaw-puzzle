@@ -2,6 +2,7 @@
   "name": "jigsaw-puzzle",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "Xpop": "https://github.com/littleprincewdk/pop.git"
   }
 }
