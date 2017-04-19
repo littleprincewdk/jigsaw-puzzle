@@ -19,7 +19,7 @@ $(function(){
         animation:true,
     };
     let timer;//定时器
-    let $Timer=$('#timer span');
+    let $Timer=$('#timer>span');
     let time=0;//游戏用时
     initToolBarEvent();
     reset();
@@ -233,6 +233,7 @@ $(function(){
         let loading=XPop.pop('loading','wave');
         destroy();
         initFragmentAndImagePosition();
+        //shuffle(10);
         initDomAndEvents();
         loading._close();
         //重置定时器
@@ -252,5 +253,38 @@ $(function(){
         $Main.empty();
         fragments=[];
         images=[];
+    }
+    function shuffle(step){
+        for(let i=0;i<step;i++){
+            let closeFragments=[];
+            for(let _row=-1;_row<=1;_row+=2){
+                let row=nullLocation.row+_row;
+                if(row>=0&&row<settings.rowNum){
+                    closeFragments.push({
+                        row:row,
+                        col:nullLocation.col,
+                    })
+                }
+            }
+            for(let _col=-1;_col<=1;_col+=2){
+                let col=nullLocation.col+_col;
+                if(col>=0&&col<settings.colNum){
+                    closeFragments.push({
+                        row:nullLocation.row,
+                        col:col,
+                    })
+                }
+            }
+            let location=closeFragments[Math.floor(Math.random()*closeFragments.length)];
+            let nullPosition=getPositionByIndex(nullLocation.row,nullLocation.col);
+            let fragment=fragments[location.row][location.col];
+            console.log(fragment)
+            fragment.curRow=nullLocation.row;
+            fragment.curCol=nullLocation.col;
+            fragment.curX=nullPosition.x;
+            fragment.curY=nullPosition.y;
+            nullLocation.row=location.row;
+            nullLocation.col=location.col;
+        }
     }
 });
