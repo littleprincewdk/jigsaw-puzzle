@@ -4,4 +4,4 @@ html 拼图小游戏
 - 自定义网格数
 - dom和canvas两种实现方式
 
-[demo](http://princekin.tjxuechuang.com/projects/app/index.html)
+[demo](http://princekin.tjxuechuang.com/projects/jigsaw-puzzle/app/index.html)
